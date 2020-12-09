@@ -89,3 +89,53 @@
 // }
 
 // moveAnimal({type: 'bird', flyingspeed: 50})
+
+// const paragraph = document.querySelector('p')!;
+// const paragraph1 = document.getElementById('paragrap')!;
+// paragraph.textContent = 'Saidbek';
+// console.log(paragraph);
+
+// const inputuser2 = document.querySelector('input')! as HTMLInputElement;
+// console.log(inputuser2)
+
+// const inputuser = document.getElementById('user-input')! as HTMLInputElement;
+// console.log(inputuser)
+
+// if (inputuser) {
+//   inputuser.value = 'Hi there';
+// }
+
+// which property names we wanna and how many properties we need
+// interface ErrorContainer {
+//   [prop: string]: string;
+// }
+// const errorBag: ErrorContainer = {
+//   email: 'Not a valid email',
+//   username: 'Must Start with a capital character!'
+// }
+
+// console.log(errorBag)
+
+// type Combinable = string | number;
+
+// function add(a: number, b: number): number;
+// function add(a: string, b: string): string;
+// function add(a: number, b: string): string;
+// function add(a: string, b: number): string;
+// function add(a: Combinable, b: Combinable) {
+//   if (typeof a ==='string' || typeof b === 'string'){
+//     return a.toString() + b.toString()
+//   }
+//   return a + b;
+// }
+
+// const result = add('1',5);
+// console.log(result)
+
+
+const fetchedUserdata = {
+  name: 'max',
+  job: {title: {time: 15}, description: 'my own company'}
+}
+
+console.log(fetchedUserdata.job.title.time)
