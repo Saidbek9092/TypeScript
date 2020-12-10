@@ -67,7 +67,7 @@
 //   console.log(postion);
 // }
 
-// // here Log prints out 2
+// // // here Log prints out 2
 // class Product {
 //   @Log
 //   title: string;
@@ -91,27 +91,68 @@
 //     return this._price * (1 + tax);
 //   }
 // }
-function Autobind(_: any, _2: string, descriptor: PropertyDescriptor) {
-  console.log(descriptor)
-  const originalMethod = descriptor.value;
-  const adjustedDescriptor: PropertyDescriptor = {
-    configurable: true,
-    enumerable: false,
-    get() {
-      const boundFn = originalMethod.bind(this);
-      return boundFn;
-    },
-  };
-  return adjustedDescriptor; // this will replace showMessage()
-}
-class Printer {
-  message = 'This works!';
-  @Autobind
-  showMessage() { 
-    console.log(this.message);
+
+// --- Autobind example
+// function Autobind(_: any, _2: string, descriptor: PropertyDescriptor) {
+//   console.log(descriptor)
+//   const originalMethod = descriptor.value;
+//   const adjustedDescriptor: PropertyDescriptor = {
+//     configurable: true,
+//     enumerable: false,
+//     get() {
+//       const boundFn = originalMethod.bind(this);
+//       return boundFn;
+//     },
+//   };
+//   return adjustedDescriptor; // this will replace showMessage()
+// }
+// class Printer {
+//   message = 'This works!';
+//   @Autobind
+//   showMessage() { 
+//     console.log(this.message);
+//   }
+// }
+// const p = new Printer();
+// const button = document.querySelector('button')!;
+// button.addEventListener('click', p.showMessage.bind(p));
+// if we do not put bind(p) this will be referred to add eventlisteneer which will be undefined. 
+
+
+// --Valiations of decorators
+
+
+
+
+
+
+
+class Course {
+  title: string;
+  price: number;
+
+  constructor(t: string, p: number){
+    this.title = t;
+    this.price = p;
   }
 }
-const p = new Printer();
-const button = document.querySelector('button')!;
-button.addEventListener('click', p.showMessage.bind(p));
-// if we do not put bind(p) this will be referred to add eventlisteneer which will be undefined. 
+
+const courseForm = document.querySelector('form')!;
+courseForm.addEventListener('submit', event => {
+  event.preventDefault();
+  const titleEl = document.getElementById('title')! as HTMLInputElement;
+  const priceEl = document.getElementById('price')! as HTMLInputElement;
+
+  const title = titleEl.value;
+  const price = +priceEl.value;
+
+  if (title.trim().length > 0 && price > 0){
+    const createdCourse = new Course(title, price);
+    console.log(createdCourse);
+  } else{
+    throw new Error('Incorrect data');
+  }
+
+
+
+})
